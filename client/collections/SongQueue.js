@@ -8,15 +8,19 @@ var SongQueue = Songs.extend({
       }
     });
 
+    this.on('enqueue', function(song) {
+      console.log(this);
+    });
+
+    this.on('dequeue', function() {
+      this.remove(this.at(0));
+    });
+
     this.on('ended', function(){
       this.remove(this.at(0));
       if(this.length){
         this.playFirst();
       }
-    });
-
-    this.on('dequeue', function() {
-      this.remove(this.at(0));
     });
   },
 
